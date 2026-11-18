@@ -1,0 +1,246 @@
+:root {
+      --bg: #02060d;
+      --surface: #060d18;
+      --card: #091322;
+      --teal: #14b8a6;
+      --cyan: #38bdf8;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: 'Archivo', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: -0.025em;
+      line-height: 0.94;
+    }
+    .font-mono-kicker {
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    /* Subtle Film Grain Overlay */
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 90;
+      opacity: 0.035;
+      background-image: radial-gradient(rgba(255,255,255,0.65) 1px, transparent 0);
+      background-size: 22px 22px;
+    }
+
+    /* Top Scroll Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0d7377, #14b8a6, #38bdf8, #5eead4);
+      z-index: 100;
+      width: 0%;
+      transition: width 0.08s linear;
+      box-shadow: 0 0 14px rgba(20, 184, 166, 0.9);
+    }
+
+    /* Hero Circular Portrait Stage with 6 Orbiting Tech Pillars */
+    .orbit-stage {
+      position: relative;
+      width: 310px;
+      height: 310px;
+      margin: 0 auto;
+    }
+    @media (min-width: 640px) {
+      .orbit-stage {
+        width: 390px;
+        height: 390px;
+      }
+    }
+    .orbit-ring-outer {
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      border: 1.5px dashed rgba(56, 189, 248, 0.35);
+      animation: spinSlow 46s linear infinite;
+      pointer-events: none;
+    }
+    .orbit-ring-inner {
+      position: absolute;
+      inset: 34px;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(20, 184, 166, 0.45);
+      box-shadow: 0 0 55px rgba(20, 184, 166, 0.22), inset 0 0 35px rgba(56, 189, 248, 0.16);
+      pointer-events: none;
+    }
+    @keyframes spinSlow { to { transform: rotate(360deg); } }
+
+    .hero-circle-portrait {
+      position: absolute;
+      inset: 44px;
+      border-radius: 9999px;
+      overflow: hidden;
+      background: #060d18;
+      border: 2px solid rgba(94, 234, 212, 0.65);
+      box-shadow: 0 0 65px rgba(20, 184, 166, 0.28);
+    }
+    .hero-circle-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: contrast(1.08) brightness(0.95);
+      transition: transform 0.5s ease;
+    }
+    .hero-circle-portrait:hover img {
+      transform: scale(1.05);
+    }
+
+    .orbit-badge {
+      position: absolute;
+      width: 66px;
+      height: 66px;
+      border-radius: 9999px;
+      background: rgba(6, 15, 30, 0.95);
+      border: 1.5px solid rgba(56, 189, 248, 0.55);
+      box-shadow: 0 0 22px rgba(20, 184, 166, 0.28);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      z-index: 20;
+    }
+    .orbit-badge:hover,
+    .orbit-badge:focus-visible {
+      transform: scale(1.12);
+      border-color: #5eead4;
+      background: #0f2942;
+      outline: 2px solid #5eead4;
+      outline-offset: 2px;
+    }
+
+    /* Typewriter Caret */
+    .caret {
+      display: inline-block;
+      width: 3px;
+      height: 0.9em;
+      background-color: #14b8a6;
+      margin-left: 6px;
+      vertical-align: -0.08em;
+      animation: blink 0.95s steps(2, start) infinite;
+    }
+    @keyframes blink { to { visibility: hidden; } }
+
+    /* Evolve SVG Architecture & Keyboard Focus Styles (QA-03 Fix) */
+    .evolve-layer-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      fill: #64748b;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .evolve-base-path {
+      stroke: rgba(148, 163, 184, 0.18);
+      stroke-width: 1.5;
+    }
+    .evolve-active-path {
+      stroke: rgba(20, 184, 166, 0.55);
+      stroke-width: 2;
+      stroke-dasharray: 6 6;
+      animation: dashFlow 16s linear infinite;
+      transition: stroke 0.3s ease, stroke-width 0.3s ease;
+    }
+    .sim-running .evolve-active-path {
+      stroke: #5eead4;
+      stroke-width: 2.8;
+      animation-duration: 4s;
+    }
+    @keyframes dashFlow { to { stroke-dashoffset: -240; } }
+
+    .evolve-packet {
+      fill: #5eead4;
+      filter: drop-shadow(0 0 6px #14b8a6);
+    }
+    .evolve-node {
+      cursor: pointer;
+      outline: none;
+    }
+    .evolve-node rect.chip {
+      fill: #070d16;
+      stroke: rgba(20, 184, 166, 0.45);
+      stroke-width: 1.5;
+      transition: all 0.22s ease;
+    }
+    .evolve-node:hover rect.chip,
+    .evolve-node:focus rect.chip,
+    .evolve-node:focus-visible rect.chip,
+    .evolve-node.active rect.chip,
+    .evolve-node.sim-pass rect.chip {
+      fill: #0f2942;
+      stroke: #5eead4;
+      stroke-width: 2.6;
+      filter: drop-shadow(0 0 14px rgba(20, 184, 166, 0.65));
+    }
+    .evolve-node.sim-fail rect.chip {
+      fill: #3b0d15;
+      stroke: #f43f5e;
+      stroke-width: 2.6;
+      filter: drop-shadow(0 0 14px rgba(244, 63, 94, 0.65));
+    }
+    .evolve-node text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 600;
+      fill: #e2e8f0;
+      pointer-events: none;
+    }
+
+    /* World Map Flight Arc Animation */
+    .flight-arc {
+      stroke-dasharray: 5 5;
+      animation: arcFlow 12s linear infinite;
+    }
+    @keyframes arcFlow { to { stroke-dashoffset: -120; } }
+
+    /* Beat Cards in Scene 03 */
+    .craft-beat-card {
+      border-left: 2px solid rgba(148, 163, 184, 0.2);
+      padding-left: 1.5rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .craft-beat-card.is-on,
+    .craft-beat-card:hover {
+      border-left-color: #14b8a6;
+      transform: translateX(6px);
+    }
+
+    /* Strikethrough "next -> now" in Contact */
+    .strike-word {
+      position: relative;
+      display: inline-block;
+      color: #64748b;
+    }
+    .strike-word::after {
+      content: '';
+      position: absolute;
+      left: -4%;
+      right: -4%;
+      top: 52%;
+      height: 4px;
+      background: #14b8a6;
+      transform: rotate(-4deg);
+    }
